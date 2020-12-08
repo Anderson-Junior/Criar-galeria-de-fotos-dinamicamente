@@ -7,9 +7,11 @@
     <body>
         <div class="container mx-auto">
         <h1 class="text-3xl">Nova Categoria</h1>
-        <form action="/salvar-categoria" method="post">
+        <form action="salvar-categoria" method="post">
             {{csrf_field()}}
             <div>
+
+                </select>
                 <label for="nome">Nome Categoria</label>
                 <input type="text" name="nome" value="" required>
                 <button type="submit">Salvar</button>

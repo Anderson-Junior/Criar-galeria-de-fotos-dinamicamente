@@ -10,7 +10,8 @@ class Categoria extends Model
     use HasFactory;
     protected $table = "categoria";
     protected $fillable = [
-        'nome'
+        'nome',
+        'galeria_id'
     ];
 
     public function galerias(){
