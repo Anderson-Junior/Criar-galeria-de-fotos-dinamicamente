@@ -36,7 +36,12 @@ Route::get('/nova-galeria', [GaleriaController::class, 'novaGaleria'])->name('no
 Route::post('/salvar-galeria', [GaleriaController::class, 'salvarGaleria'])->name('salvar-galeria');
 Route::get('/lista-galeria', [GaleriaController::class, 'listaGaleria'])->name('lista-galeria');
 
-/*---------------categoria------------------*/
+/*---------------CATEGORIA------------------*/
 Route::get('/nova-categoria', [CategoriaController::class, 'novaCategoria'])->name('nova-caregoria');
 Route::post('/salvar-categoria', [CategoriaController::class, 'salvarCategoria'])->name('salvar-categoria');
 Route::get('/lista-categoria', [CategoriaController::class, 'listaCategoria'])->name('lista-categoria');
+
+/*---------------IMAGEM----------------------*/
+Route::get('/{categoria}/nova-imagem', [ImagemController::class, 'novaImagem'])->name('nova-imagem');
+Route::post('/{categoria}/salvar-imagem',[ImagemController::class, 'salvarImagem'])->name('salvar-imagem');
+Route::get('/lista-imagem', [ImagemController::class, 'listaImagem'])->name('lista-imagem');
