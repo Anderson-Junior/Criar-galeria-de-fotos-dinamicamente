@@ -13,7 +13,8 @@ class Imagem extends Model
         'img_grande',
         'img_thumb',
         'alt',
-        'escrita'
+        'escrita',
+        'categoria_id'
     ];
 
     public function categorias(){

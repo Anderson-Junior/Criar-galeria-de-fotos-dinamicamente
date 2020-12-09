@@ -8,6 +8,5 @@
         @foreach ($imagem  as $value)
             <img src="{{ url(str_replace('public/', 'storage/', $value->img_grande)) }}" alt="erro">
         @endforeach
-
     </body>
 </html>

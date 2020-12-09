@@ -7,8 +7,11 @@ use App\Models\Imagem;
 
 class ImagemController extends Controller
 {
-    public function listaImagem(){
-        $imagem = Imagem::all();
+    public function listaImagem($categoria_id){
+        $imagem = Imagem::select('imagem.id', 'imagem.img_grande')
+                        ->where('imagem.categoria_id', $categoria_id)->get();
+
+
         return view('galeria.lista-imagem', compact('imagem'));
     }
 
