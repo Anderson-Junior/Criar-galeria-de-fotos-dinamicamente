@@ -21,8 +21,9 @@ class CategoriaController extends Controller
         return redirect('lista-categoria');
     }
 
-    public function listaCategoria(){
-        $categorias = Categoria::all();
+    public function listaCategoria($galeria_id){
+        $categorias = Categoria::select('categoria.id', 'categoria.nome')
+                               ->where('categoria.galeria_id', $galeria_id)->get();
 
         return view('galeria.lista-categorias', compact('categorias'));
     }

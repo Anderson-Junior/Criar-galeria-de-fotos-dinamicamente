@@ -4,19 +4,29 @@
         <meta charset="utf-8">
         <title>Categorias Cadastradas</title>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <style media="screen">
+            .alinhamento{
+                display: inline-flex;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+        </style>
     </head>
     <body>
-        <div class="container mx-auto">
-            <div>
-                <h1 class="text-3xl">Listagem das categorias</h1>
-            </div>
-            @foreach ( $categorias as $categoria )
-                <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                  <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">{{ $categoria->nome }}</div>
-                    <p class="text-gray-700 text-base">
-                    </p>
+        <div class="container">
+            <h1>Listagem das categorias</h1>
+            @foreach ($categorias as $categoria)
+                <div class="card alinhamento" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ $categoria->nome }}</h5>
+                    <a class="btn btn-primary" href = "{{ route('lista-imagem', ['categoria' => $categoria->id]) }}">Ver Fotos</a>
                   </div>
+                </div>
             @endforeach
         </div>
     </body>
