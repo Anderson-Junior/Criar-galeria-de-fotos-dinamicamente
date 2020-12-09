@@ -11,7 +11,8 @@ class Galeria extends Model
 
     protected $table = "galeria";
     protected $fillable = [
-        'nome'
+        'nome',
+        'secretaria_id'
     ];
 
     public function categorias(){
