@@ -29,19 +29,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 /*-----------------SECRETARIA---------------*/
 Route::get('/nova-secretaria', [SecretariaController::class, 'novaSecretaria'])->name('nova-secretaria');
 Route::post('/salvar-secretaria', [SecretariaController::class, 'salvarSecretaria']);
-Route::get('lista-secretaria', [SecretariaController::class, 'listaSecretaria'])->name('lista-secretaria');
+Route::get('/lista-secretaria', [SecretariaController::class, 'listaSecretaria'])->name('lista-secretaria');
 
 /*----------------GALERIA-------------------*/
-Route::get('/nova-galeria', [GaleriaController::class, 'novaGaleria'])->name('nova-galeria');
-Route::post('/salvar-galeria', [GaleriaController::class, 'salvarGaleria'])->name('salvar-galeria');
-Route::get('/lista-galeria', [GaleriaController::class, 'listaGaleria'])->name('lista-galeria');
+Route::get('/{secretaria}/nova-galeria', [GaleriaController::class, 'novaGaleria'])->name('nova-galeria');
+Route::post('/{secretaria}/salvar-galeria', [GaleriaController::class, 'salvarGaleria'])->name('salvar-galeria');
+Route::get('/{secretaria}/lista-galeria', [GaleriaController::class, 'listaGaleria'])->name('lista-galeria');
 
 /*---------------CATEGORIA------------------*/
 Route::get('/{galeria}/nova-categoria', [CategoriaController::class, 'novaCategoria'])->name('nova-caregoria');
 Route::post('/{galeria}/salvar-categoria', [CategoriaController::class, 'salvarCategoria'])->name('salvar-categoria');
-Route::get('/lista-categoria', [CategoriaController::class, 'listaCategoria'])->name('lista-categoria');
+Route::get('/{galeria}/lista-categoria', [CategoriaController::class, 'listaCategoria'])->name('lista-categoria');
 
 /*---------------IMAGEM----------------------*/
 Route::get('/{categoria}/nova-imagem', [ImagemController::class, 'novaImagem'])->name('nova-imagem');
 Route::post('/{categoria}/salvar-imagem',[ImagemController::class, 'salvarImagem'])->name('salvar-imagem');
-Route::get('/lista-imagem', [ImagemController::class, 'listaImagem'])->name('lista-imagem');
+Route::get('/{categoria}/lista-imagem', [ImagemController::class, 'listaImagem'])->name('lista-imagem');
