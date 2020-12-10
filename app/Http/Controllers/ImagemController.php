@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Imagem;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as Image;
 
 class ImagemController extends Controller
 {
@@ -26,9 +28,15 @@ class ImagemController extends Controller
 
         if($request->hasFile('image')){
 
-            $dados['img_grande'] = $request->file('image')->store('public/galeria');
-            $dados['alt'] = $request->file('image')->getClientOriginalName();
+            $dados['img_grande'] = $request->file('image')->store('galeria/padrao');
+            $caminho = explode('/', $dados['img_grande']);
 
+            $dados['img_thumb'] = 'galeria/thumbnail/' . $caminho[count($caminho) -1];
+            $thumbnail = Image::make($request->file('image'))->resize(298, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('/storage/' . $dados['img_thumb']));
+
+            $dados['alt'] = $request->file('image')->getClientOriginalName();
             $imagem = Imagem::create($dados);
         }
         return redirect('lista-imagem');
