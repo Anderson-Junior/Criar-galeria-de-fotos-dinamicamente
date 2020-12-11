@@ -10,11 +10,10 @@ use Intervention\Image\Facades\Image as Image;
 class ImagemController extends Controller
 {
     public function listaImagem($categoria_id){
-        $imagem = Imagem::select('imagem.id', 'imagem.img_grande')
+        $imagem = Imagem::select('imagem.id', 'imagem.img_thumb', 'imagem.categoria_id')
                         ->where('imagem.categoria_id', $categoria_id)->get();
 
-
-        return view('galeria.lista-imagem', compact('imagem'));
+        return view('galeria.lista-imagem', compact('imagem', 'categoria_id'));
     }
 
     public function novaImagem(){

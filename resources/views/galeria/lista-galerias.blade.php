@@ -23,17 +23,16 @@
     </head>
     <body>
         <div class="container">
-            <div>
-                <h1>Listagem das galerias</h1>
-                <div class="d-flex flex-row-reverse bd-highlight">
-                  <div class="p-2 bd-highlight">
-                      <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Adicionar nova secretaria"
-                          onclick="window.location.href = '/{secretaria}/nova-galeria'">
-                          <i class="material-icons">add_box</i>
-                      </button>
-                  </div>
-                </div>
-            </div>
+        <h1>Listagem das galerias</h1>
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <div class="p-2 bd-highlight">
+              <a class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Adicionar nova galeria"
+                 href="{{ route('nova-galeria', ['secretaria' => $secretaria_id]) }}">
+                  <i class="material-icons">add_box</i>
+              </a>
+          </div>
+        </div>
+
             @foreach ( $galerias as $galeria)
                 <div class="card alinhamento" style="width: 18rem;">
                   <div class="card-body">

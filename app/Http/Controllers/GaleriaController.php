@@ -24,6 +24,6 @@ class GaleriaController extends Controller
                                     'galeria.nome')
                             ->where('galeria.secretaria_id', $secretaria_id)->get();
 
-        return view('galeria.lista-galerias', compact('galerias'));
+        return view('galeria.lista-galerias', compact('galerias', 'secretaria_id'));
     }
 }

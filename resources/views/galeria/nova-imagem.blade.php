@@ -10,6 +10,7 @@
     </head>
     <body>
         <div class="container">
+            <h1>Nova Imagem</h1>
             <form method="post" enctype="multipart/form-data" action="salvar-imagem">
                 {{ csrf_field() }}
                 <div>
@@ -21,7 +22,7 @@
                     <input class="form-control" required type="file" id="image" name="image">
                 </div>
                 <div>
-                    <button class="btn btn-primary " type="submit">Submit</button>
+                    <button class="btn btn-primary" style="margin-top:5px" type="submit">Salvar</button>
                 </div>
             </form>
             @if(isset($imagem))
