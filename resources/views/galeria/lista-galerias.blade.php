@@ -34,7 +34,7 @@
         </div>
 
             @foreach ( $galerias as $galeria)
-                <div class="card alinhamento" style="width: 18rem;">
+                <div class="card alinhamento" style="width: 18rem; margin-bottom:5px">
                   <div class="card-body">
                     <h5 class="card-title">{{ $galeria->nome }}</h5>
                     <a class="btn btn-primary" href = "{{ route('lista-categoria', ['galeria' => $galeria->id]) }}">Ver Categorias</a>

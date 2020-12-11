@@ -16,7 +16,7 @@ class GaleriaController extends Controller
         $dados['secretaria_id'] = $secretaria;
         Galeria::create($dados);
 
-        return redirect('lista-galeria');
+        return redirect()->route('lista-galeria', ['secretaria'=>$secretaria]);
     }
 
     public function listaGaleria($secretaria_id){
