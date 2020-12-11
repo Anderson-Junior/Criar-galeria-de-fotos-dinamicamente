@@ -5,6 +5,7 @@ use App\Http\Controllers\SecretariaController;
 use App\Http\Controllers\GaleriaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ImagemController;
+use App\Http\Controllers\ClasseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +46,8 @@ Route::get('/{galeria}/lista-categoria', [CategoriaController::class, 'listaCate
 Route::get('/{categoria}/nova-imagem', [ImagemController::class, 'novaImagem'])->name('nova-imagem');
 Route::post('/{categoria}/salvar-imagem',[ImagemController::class, 'salvarImagem'])->name('salvar-imagem');
 Route::get('/{categoria}/lista-imagem', [ImagemController::class, 'listaImagem'])->name('lista-imagem');
+
+/*--------------CLASSES---------------------*/
+Route::get('/nova-classe', [ClasseController::class, 'novaClasse'])->name('nova-classe');
+Route::post('salvar-classe', [ClasseController::class, 'salvarClasse'])->name('salvar-classe');
+Route::get('/lista-classes', [ClasseController::class, 'listaClasses'])->name('lista-classes');
