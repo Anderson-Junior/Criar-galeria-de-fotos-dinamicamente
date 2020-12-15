@@ -40,6 +40,16 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ $secretaria->nome }}</h5>
                     <a class="btn btn-primary" href="{{ route('lista-galeria', ['secretaria' => $secretaria->id]) }}">Ver galerias</a>
+                    <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Editar secretaria"
+                        onclick="window.location.href = '/editar-secretaria/' + {{$secretaria->id}}">
+                        <i class="material-icons" >edit</i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Excluir secretaria"
+                        onclick="if(confirm('Confirma a exclusão desta secretaria?')){
+                            window.location.href = '/excluir-secretaria/' + {{$secretaria->id}}
+                            }">
+                        <i class="material-icons">delete_forever</i>
+                    </button>
                   </div>
                 </div>
             @endforeach
