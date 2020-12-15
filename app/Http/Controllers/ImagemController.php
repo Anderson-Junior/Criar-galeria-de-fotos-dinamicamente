@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Imagem;
+use App\Models\Classe;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as Image;
 
@@ -17,7 +18,8 @@ class ImagemController extends Controller
     }
 
     public function novaImagem(){
-        return view('galeria.nova-imagem');
+        $classes = Classe::all();
+        return view('galeria.nova-imagem', compact('classes'));
     }
 
     public function salvarImagem($categoria, Request $request)
@@ -37,7 +39,30 @@ class ImagemController extends Controller
 
             $dados['alt'] = $request->file('image')->getClientOriginalName();
             $imagem = Imagem::create($dados);
+
+            $imagem->classes()->sync(explode ( ',', $request->classes));
         }
-        return redirect('lista-imagem');
+        return redirect()->route('lista-imagem', ['categoria'=>$categoria]);
+    }
+
+    public function editarImagem($id){
+        $imagem = Imagem::with('classes')->where('id', $id)->first();
+        return view('galeria.editar-imagem', compact('imagem'));
+    }
+
+    public function salvarEdicao(Request $request){
+        $dados = $request->all();
+        $imagem = Imagem::where('id', $dados['id'])->first();
+        $imagem->update($dados);
+
+        return redirect()->route('lista-imagem', ['categoria' => $imagem->categoria_id]);
+    }
+
+    public function excluirImagem($id){
+        $imagem = Imagem::where('id', $id)->first();
+        Storage::disk('public')->delete($imagem->img_thumb);
+        Storage::disk('public')->delete($imagem->img_grande);
+        $imagem->delete();
+        return back();
     }
 }
