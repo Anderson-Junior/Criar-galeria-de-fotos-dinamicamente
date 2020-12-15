@@ -26,4 +26,22 @@ class GaleriaController extends Controller
 
         return view('galeria.lista-galerias', compact('galerias', 'secretaria_id'));
     }
+
+    public function editarGaleria($id){
+        $galeria = Galeria::where('id', $id)->first();
+        return view('galeria.editar-galeria', compact('galeria'));
+    }
+
+    public function salvarEdicao(Request $request){
+        $dados = $request->all();
+        $galeria = Galeria::where('id', $dados['id'])->first();
+        $galeria->update($dados);
+
+        return redirect()->route('lista-galeria', ['secretaria' => $galeria->secretaria_id]);
+    }
+
+    public function excluirGaleria($id){
+        $galeria = Galeria::where('id', $id)->delete();
+        return back();
+    }
 }
