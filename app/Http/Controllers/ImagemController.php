@@ -39,7 +39,6 @@ class ImagemController extends Controller
 
             $dados['alt'] = $request->file('image')->getClientOriginalName();
             $imagem = Imagem::create($dados);
-
             $imagem->classes()->sync(explode ( ',', $request->classes));
         }
         return redirect()->route('lista-imagem', ['categoria'=>$categoria]);

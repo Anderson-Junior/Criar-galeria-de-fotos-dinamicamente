@@ -1,3 +1,21 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+#add {
+    margin-top:5px;
+    margin-bottom:5px;
+}
+h1 {
+    font-size:25px;
+    font-family: 'Bree Serif', serif;
+}
+h5 {
+    font-size: 20px;
+    font-family: 'Bree Serif', serif;
+}
+.alinhamento {
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+}

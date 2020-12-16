@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Secretarias Cadastradas</title>
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <x-scripts-links/>
     </head>
     <body>
         <div>
