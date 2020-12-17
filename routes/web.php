@@ -58,6 +58,7 @@ Route::get('/{categoria}/lista-imagem', [ImagemController::class, 'listaImagem']
 Route::get('/editar-imagem/{id}', [ImagemController::class, 'editarImagem'])->name('editar-imagem');
 Route::get('/excluir-imagem/{id}', [ImagemController::class, 'excluirImagem'])->name('excluir-imagem');
 Route::get('/salvar-edicao-imagem/{id}', [ImagemController::class, 'salvarEdicao'])->name('salvar-edicao-imagem');
+Route::get('/{categoria}/lista-imagem-cliente', [ImagemController::class, 'listaImagemCliente'])->name('lista-imagem-cliente');
 /*--------------CLASSES---------------------*/
 Route::get('/{imagem}/nova-classe', [ClasseController::class, 'novaClasse'])->name('nova-classe');
 Route::post('/{imagem}/salvar-classe', [ClasseController::class, 'salvarClasse'])->name('salvar-classe');

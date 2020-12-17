@@ -16,6 +16,12 @@ class ImagemController extends Controller
 
         return view('galeria.lista-imagem', compact('imagem', 'categoria_id'));
     }
+    public function listaImagemCliente($categoria_id){
+        $imagem = Imagem::select('imagem.id', 'imagem.img_thumb', 'imagem.categoria_id')
+                        ->where('imagem.categoria_id', $categoria_id)->get();
+
+        return view('galeria.index-cliente', compact('imagem', 'categoria_id'));
+    }
 
     public function novaImagem(){
         $classes = Classe::all();
@@ -47,13 +53,15 @@ class ImagemController extends Controller
 
     public function editarImagem($id){
         $imagem = Imagem::with('classes')->where('id', $id)->first();
-        return view('galeria.editar-imagem', compact('imagem'));
+        $classes = Classe::all();
+        return view('galeria.editar-imagem', compact('imagem', 'classes'));
     }
 
     public function salvarEdicao(Request $request){
         $dados = $request->all();
         $imagem = Imagem::where('id', $dados['id'])->first();
-        $imagem->update($dados);$imagem->classes()->sync(isset($request->classes) ? explode ( ',', $request->classes) : []);
+        $imagem->update($dados);
+        $imagem->classes()->sync(isset($request->classes) ? explode ( ',', $request->classes) : []);
 
         return redirect()->route('lista-imagem', ['categoria' => $imagem->categoria_id]);
     }
@@ -63,7 +71,7 @@ class ImagemController extends Controller
         Storage::disk('public')->delete($imagem->img_thumb);
         Storage::disk('public')->delete($imagem->img_grande);
         $imagem->delete();
-        
+
         return back();
     }
 }

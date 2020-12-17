@@ -12,21 +12,5 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
-<script>
-      window.addEventListener('load', function() {
-        $('.gallery > *').fancybox({ //buscar na pagina, buscar os elementos e inicializar comforme os parametros. usando a classe .imgs ou o data-fancybox="img"
-          buttons : [
-            'slideShow',
-            'share',
-            'zoom',
-            'fullScreen',
-            'close'
-          ],
-          arrows: true,
-          thumbs : {
-            autoStart : true
-          }
-        });
-       });
-  </script>
+
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
