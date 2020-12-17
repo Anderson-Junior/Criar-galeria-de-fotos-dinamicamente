@@ -19,6 +19,7 @@ class ImagemController extends Controller
 
     public function novaImagem(){
         $classes = Classe::all();
+
         return view('galeria.nova-imagem', compact('classes'));
     }
 
@@ -31,7 +32,6 @@ class ImagemController extends Controller
 
             $dados['img_grande'] = $request->file('image')->store('galeria/padrao');
             $caminho = explode('/', $dados['img_grande']);
-
             $dados['img_thumb'] = 'galeria/thumbnail/' . $caminho[count($caminho) -1];
             $thumbnail = Image::make($request->file('image'))->resize(298, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -39,7 +39,8 @@ class ImagemController extends Controller
 
             $dados['alt'] = $request->file('image')->getClientOriginalName();
             $imagem = Imagem::create($dados);
-            $imagem->classes()->sync(explode ( ',', $request->classes));
+
+            $imagem->classes()->sync(isset($request->classes) ? explode ( ',', $request->classes) : []);
         }
         return redirect()->route('lista-imagem', ['categoria'=>$categoria]);
     }
@@ -52,7 +53,7 @@ class ImagemController extends Controller
     public function salvarEdicao(Request $request){
         $dados = $request->all();
         $imagem = Imagem::where('id', $dados['id'])->first();
-        $imagem->update($dados);
+        $imagem->update($dados);$imagem->classes()->sync(isset($request->classes) ? explode ( ',', $request->classes) : []);
 
         return redirect()->route('lista-imagem', ['categoria' => $imagem->categoria_id]);
     }
@@ -62,6 +63,7 @@ class ImagemController extends Controller
         Storage::disk('public')->delete($imagem->img_thumb);
         Storage::disk('public')->delete($imagem->img_grande);
         $imagem->delete();
+        
         return back();
     }
 }

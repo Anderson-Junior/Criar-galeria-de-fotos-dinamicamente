@@ -27,7 +27,7 @@
                       display: none;
                   }
               </style>
-              <select x-cloak id="select" required>
+              <select x-cloak id="select">
                   @foreach ($classes as $classe)
                       <option value="{{$classe->id}}">{{$classe->nome}}</option>
                   @endforeach
@@ -167,10 +167,6 @@
                     }
                 </script>
             </form>
-
-            @if(isset($imagem))
-                <img src="{{asset('img/galeria/' . $imagem)}}" alt="">
-            @endif
 
               <table class="table-auto" style="margin-top:50px">
                   <thead>
