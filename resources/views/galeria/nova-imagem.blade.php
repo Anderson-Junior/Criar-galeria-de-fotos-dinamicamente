@@ -19,13 +19,8 @@
                     <input class="form-control" required type="file" id="image" name="image">
                 </div>
                 <div>
-                    <x-select-classes/>
+                    <x-select-classes :classes="$classes" :selecionado="[]"/>
 
-                    <select x-cloak id="select">
-                        @foreach ($classes as $classe)
-                            <option value="{{$classe->id}}">{{$classe->nome}}</option>
-                        @endforeach
-                    </select>
                     <button class="btn btn-primary" style="margin-top:5px" type="submit">Salvar</button>
                 </div>
 

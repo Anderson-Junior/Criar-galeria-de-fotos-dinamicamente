@@ -6,14 +6,17 @@ use Illuminate\View\Component;
 
 class SelectClasses extends Component
 {
+    public $classes;
+    public $selecionado;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($classes, $selecionado)
     {
-        //
+        $this->classes = $classes;
+        $this->selecionado = $selecionado;
     }
 
     /**

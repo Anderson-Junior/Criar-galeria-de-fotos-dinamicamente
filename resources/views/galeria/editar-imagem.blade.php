@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>Editar Imagem</h1>
+            <h1 style="margin-bottom:15px;">Editar Imagem</h1>
             <form action="/salvar-edicao-imagem/{id}" method="get">
                 {{csrf_field()}}
                 <div class="form-group">
@@ -17,12 +17,7 @@
                     <label for="nome">Escrita</label>
                     <input class="form-control" type="text" name="escrita" value="{{$imagem->escrita}}" required>
 
-                    <x-select-classes/>
-                    <select x-cloak id="select">
-                        @foreach ($imagem->classes as $classe)
-                            <option value="{{$classe->id}}">{{$classe->nome}}</option>
-                        @endforeach
-                    </select>
+                    <x-select-classes :classes="$classes" :selecionado="$imagem->classes"/>
 
                     <button class="btn btn-primary" style="margin-top:5px" type="submit">Salvar</button>
                 </div>
@@ -46,8 +41,6 @@
                     </tbody>
               </table>
             </div>
-
-
         </div>
     </body>
 </html>
